@@ -13,12 +13,12 @@
   ]
 
   // Listado de emails de los usuarios
-  const userEmails = users.map((u) => u.email)
+  const userEmails = users.map((user) => user.email)
 
   // Variables booleanas de un video juego
   const canJump = false
   const canRun = true
-  const hasItems = true
+  const hasItems = false
   const isLoading = false
 
   // Otros ejercicios
@@ -37,12 +37,12 @@
   }
 
   // obtiene libros desde un URL
-  function getBooksFromUrl(url: string) {
+  function getBooksByUrl(url: string) {
     throw new Error('Function not implemented.')
   }
 
   // obtiene el área de un cuadrado basado en sus lados
-  function squareArea(side: number) {
+  function getSquareArea(side: number) {
     throw new Error('Function not implemented.')
   }
 
