@@ -1,27 +1,30 @@
 ;(() => {
   // No aplicando el principio de responsabilidad única
-
   type Gender = 'M' | 'F'
+
+  // Alto Acoplamiento
 
   class Person {
     constructor(
-      public name: string,
+      public firstName: string,
+      public lastName: string,
       public gender: Gender,
       public birthdate: Date,
     ) {}
   }
 
   class User extends Person {
-    public lastAcces: Date
     constructor(
       public email: string,
       public role: string,
-      name: string,
+      private lastAccess: Date,
+      firstName: string,
+      lastName: string,
       gender: Gender,
       birthdate: Date,
     ) {
-      super(name, gender, birthdate)
-      this.lastAcces = new Date()
+      super(firstName, lastName, gender, birthdate)
+      this.lastAccess = new Date()
     }
 
     checkCredentials() {
@@ -32,26 +35,28 @@
   class UserSettings extends User {
     constructor(
       public workingDirectory: string,
-      public lastOpenFolder: string,
+      public lastFolderOpen: string,
       email: string,
       role: string,
-      name: string,
+      firstName: string,
+      lastName: string,
       gender: Gender,
       birthdate: Date,
     ) {
-      super(email, role, name, gender, birthdate)
+      super(email, role, new Date(), firstName, lastName, gender, birthdate)
     }
   }
 
-  const newUserSettings = new UserSettings(
-    '/usr/home',
-    '/home',
+  const userSettings = new UserSettings(
+    '/urs/home',
+    '/development',
     'fernando@google.com',
-    'Admin',
+    'F',
     'Fernando',
+    'Herrera',
     'M',
     new Date('1985-10-21'),
   )
 
-  console.log({ newUserSettings })
+  console.log({ userSettings, credentials: userSettings.checkCredentials() })
 })()
